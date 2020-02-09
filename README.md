@@ -19,25 +19,13 @@
 
 ### 🏠 [Homepage](https://github.com/Samuelab2/css-grid-layout-mockups#readme)
 
-## Install
-
-```sh
-npm install
-```
-
-## Run tests
-
-```sh
-npm run test
-```
-
 ## Author
 
 👤 **Samuel Mata <samuelab2@gmail.com>**
 
-* Twitter: [@samuelab\_26](https://twitter.com/samuelab\_26)
-* Github: [@Samuelab2](https://github.com/Samuelab2)
-* LinkedIn: [@samuelab2](https://linkedin.com/in/samuelab2)
+- Twitter: [@samuelab_26](https://twitter.com/samuelab_26)
+- Github: [@Samuelab2](https://github.com/Samuelab2)
+- LinkedIn: [@samuelab2](https://linkedin.com/in/samuelab2)
 
 ## 🤝 Contributing
 
@@ -52,5 +40,6 @@ Give a ⭐️ if this project helped you!
 Copyright © 2020 [Samuel Mata <samuelab2@gmail.com>](https://github.com/Samuelab2).<br />
 This project is [MIT](https://github.com/Samuelab2/css-grid-layout-mockups/blob/master/LICENSE) licensed.
 
-***
+---
+
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
