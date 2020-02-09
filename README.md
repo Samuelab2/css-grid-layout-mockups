@@ -10,8 +10,8 @@
   <a href="https://github.com/Samuelab2/css-grid-layout-mockups/blob/master/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/github/license/Samuelab2/css-grid-layout-mockups" />
   </a>
-  <a href="https://twitter.com/samuelab\_26" target="_blank">
-    <img alt="Twitter: samuelab\_26" src="https://img.shields.io/twitter/follow/samuelab\_26.svg?style=social" />
+  <a href="https://twitter.com/samuelab_26" target="_blank">
+    <img alt="Twitter: samuelab_26" src="https://img.shields.io/twitter/follow/samuelab_26.svg?style=social" />
   </a>
 </p>
 
