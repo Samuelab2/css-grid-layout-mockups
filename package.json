@@ -1,0 +1,17 @@
+{
+  "name": "css-grid-layout-mockups",
+  "version": "1.0.0",
+  "description": "Some mockups to practice CSS grid layout",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "CSS",
+    "HTML",
+    "Grid",
+    "layout"
+  ],
+  "author": "Samuel Mata <samuelab2@gmail.com>",
+  "license": "MIT"
+}

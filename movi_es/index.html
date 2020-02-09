@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Movi.es</title>
+
+    <style>
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: Helvetica, sans-serif;
+      }
+
+      .header {
+        display: flex;
+        position: fixed;
+        height: 70px;
+        box-shadow: 1px 1px 15px 0px lightgrey;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        top: 0;
+        background: linear-gradient(white 70%, rgba(255, 255, 255, 0.8));
+        z-index: 1;
+      }
+
+      .header__figure {
+        display: flex;
+        margin: 0;
+        width: 180px;
+        height: 50px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .header__figure img {
+        width: 40px;
+      }
+
+      .header__figure h1 {
+        font-size: 25px;
+        display: inline-block;
+      }
+
+      .header__input {
+        width: 50%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid lightgray;
+        outline: transparent;
+      }
+
+      .header__input::placeholder {
+        color: lightgray;
+      }
+
+      .header__userinfo {
+        display: flex;
+        align-items: center;
+        width: 200px;
+        height: 100%;
+        position: relative;
+        margin-right: 10px;
+        justify-content: space-evenly;
+        transition: background 0.5s;
+      }
+
+      .header__userinfo a {
+        text-decoration: none;
+        letter-spacing: 1px;
+        color: black;
+        font-weight: bold;
+      }
+      .header__userinfo ul {
+        position: absolute;
+        list-style: none;
+        display: none;
+        top: 70px;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+        width: 100%;
+        line-height: 25px;
+        text-align: right;
+        transition: background 2s;
+      }
+
+      .header__userinfo ul li {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+        transition: background 2s;
+      }
+
+      .header__userinfo:hover {
+        background: rgba(252, 98, 98, 0.75);
+      }
+
+      .header__userinfo:hover ul,
+      ul:hover {
+        display: block;
+        background: rgba(252, 98, 98, 0.75);
+      }
+
+      .avatar {
+        width: 40px;
+      }
+
+      .arrow {
+        width: 20px;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        /* grid-template-rows: repeat(auto, minmax(200px, 1fr)); */
+        gap: 10px;
+        grid-template-areas:
+          'menu inMovie'
+          'menu liked'
+          'menu dontmiss';
+        margin-top: 70px;
+        width: 100%;
+        height: calc(100vh - 140px);
+        overflow: auto;
+      }
+
+      .grid-container h2 {
+        margin: 10px;
+      }
+
+      .menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: linear-gradient(to right, rgb(253, 94, 94), #f38181);
+        grid-area: menu;
+      }
+
+      .menu img {
+        width: 40px;
+        height: 40px;
+        margin-top: 20px;
+      }
+
+      .menu a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+      }
+
+      .navigation {
+        display: flex;
+        position: fixed;
+        flex-direction: column;
+        align-items: center;
+        top: 70px;
+      }
+
+      .movie--container {
+        width: 330px;
+        height: 200px;
+        position: relative;
+        box-shadow: 0px 0px 8px 0px;
+        transition: box-shadow 0.3s;
+      }
+
+      .movie--container:hover {
+        /* border: 5px solid lightgray; */
+        box-shadow: 0px 0px 19px 4px grey;
+        cursor: pointer;
+      }
+
+      .movie__image--container {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .movie__image--container img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .movie--info {
+        display: flex;
+        position: absolute;
+        left: auto;
+        right: auto;
+        bottom: 0;
+        background: rgba(253, 94, 94, 0.75);
+        color: white;
+        width: 100%;
+        height: 50%;
+        margin: 0;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .movie--info p {
+        margin: 5px 5px;
+      }
+
+      .movie--info h3 {
+        font-weight: bold;
+        margin: 5px 5px;
+      }
+
+      .inMovies {
+        grid-area: inMovie;
+      }
+
+      .inMovies-grid {
+        justify-items: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 350px);
+        row-gap: 20px;
+        justify-content: space-evenly;
+      }
+
+      .liked {
+        grid-area: liked;
+      }
+
+      .liked-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 350px);
+        row-gap: 20px;
+        justify-items: center;
+        justify-content: space-evenly;
+      }
+
+      .dontmiss {
+        grid-area: dontmiss;
+        margin-bottom: 20px;
+      }
+
+      .dontmiss-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 350px);
+        row-gap: 20px;
+        justify-items: center;
+        justify-content: space-evenly;
+      }
+
+      footer {
+        background: white;
+        padding: 0 10px;
+        height: 70px;
+        box-shadow: 1px -4px 15px 0px lightgrey;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      footer a {
+        color: black;
+        text-decoration: none;
+      }
+
+      .contact {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .contact img {
+        width: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header start -->
+
+    <header class="header">
+      <figure class="header__figure">
+        <img src="logo.jpg" alt="Logo Movi.es" />
+        <h1>Movi.es</h1>
+      </figure>
+      <input
+        class="header__input"
+        type="text"
+        placeholder="Busca tu peli, actor o director favorito"
+      />
+      <div class="header__userinfo">
+        <a href="#">Samuel Mata</a>
+        <img class="avatar" src="avatar.jpg" alt="avatar" />
+        <img class="arrow" src="arrow.png" alt="arrow" />
+        <ul>
+          <li><a href="/">Cuenta</a></li>
+          <li><a href="/">Cerrar Sessión</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Header ends -->
+
+    <!-- grid container -->
+
+    <div class="grid-container">
+      <div class="menu">
+        <div class="navigation">
+          <img src="house.png" alt="Home" />
+          <a href="#">Home</a>
+          <img src="trending.png" alt="Trending" />
+          <a href="#">Trending</a>
+          <img src="heart.png" alt="likes" />
+          <a href="#">Más likes</a>
+        </div>
+      </div>
+
+      <!-- inMovies section start -->
+
+      <section class="inMovies">
+        <h2>Ahora en el cine</h2>
+        <div class="inMovies-grid">
+          <div class="movie--container">
+            <figure class="movie__image--container">
+              <img src="movie.jpg" alt="movie" />
+            </figure>
+            <span class="movie--info">
+              <h3>Rick and Morty</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque eu odio viverra velit mollis tempor eget sed felis.
+              </p>
+            </span>
+          </div>
+
+          <div class="movie--container">
+            <figure class="movie__image--container">
+              <img src="movie.jpg" alt="movie" />
+            </figure>
+            <span class="movie--info">
+              <h3>Rick and Morty</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque eu odio viverra velit mollis tempor eget sed felis.
+              </p>
+            </span>
+          </div>
+
+          <div class="movie--container">
+            <figure class="movie__image--container">
+              <img src="movie.jpg" alt="movie" />
+            </figure>
+            <span class="movie--info">
+              <h3>Rick and Morty</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque eu odio viverra velit mollis tempor eget sed felis.
+              </p>
+            </span>
+          </div>
+
+          <div class="movie--container">
+            <figure class="movie__image--container">
+              <img src="movie.jpg" alt="movie" />
+            </figure>
+            <span class="movie--info">
+              <h3>Rick and Morty</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque eu odio viverra velit mollis tempor eget sed felis.
+              </p>
+            </span>
+          </div>
+
+          <div class="movie--container">
+            <figure class="movie__image--container">
+              <img src="movie.jpg" alt="movie" />
+            </figure>
+            <span class="movie--info">
+              <h3>Rick and Morty</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque eu odio viverra velit mollis tempor eget sed felis.
+              </p>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- inMovies section ends -->
+
+      <!-- liked section start -->
+
+      <section class="liked">
+        <h2>Aclamados por la critica</h2>
+        <div class="liked-grid">
+          <div class="movie--container">
+            <figure class="movie__image--container">
+              <img src="movie.jpg" alt="movie" />
+            </figure>
+            <span class="movie--info">
+              <h3>Rick and Morty</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque eu odio viverra velit mollis tempor eget sed felis.
+              </p>
+            </span>
+          </div>
+
+          <div class="movie--container">
+            <figure class="movie__image--container">
+              <img src="movie.jpg" alt="movie" />
+            </figure>
+            <span class="movie--info">
+              <h3>Rick and Morty</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque eu odio viverra velit mollis tempor eget sed felis.
+              </p>
+            </span>
+          </div>
+
+          <div class="movie--container">
+            <figure class="movie__image--container">
+              <img src="movie.jpg" alt="movie" />
+            </figure>
+            <span class="movie--info">
+              <h3>Rick and Morty</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque eu odio viverra velit mollis tempor eget sed felis.
+              </p>
+            </span>
+          </div>
+
+          <div class="movie--container">
+            <figure class="movie__image--container">
+              <img src="movie.jpg" alt="movie" />
+            </figure>
+            <span class="movie--info">
+              <h3>Rick and Morty</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque eu odio viverra velit mollis tempor eget sed felis.
+              </p>
+            </span>
+          </div>
+
+          <div class="movie--container">
+            <figure class="movie__image--container">
+              <img src="movie.jpg" alt="movie" />
+            </figure>
+            <span class="movie--info">
+              <h3>Rick and Morty</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque eu odio viverra velit mollis tempor eget sed felis.
+              </p>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- liked section ends -->
+
+      <!-- Don't miss section start -->
+
+      <section class="dontmiss">
+        <h2>No te debes perder</h2>
+        <div class="dontmiss-grid">
+          <div class="movie--container">
+            <figure class="movie__image--container">
+              <img src="movie.jpg" alt="movie" />
+            </figure>
+            <span class="movie--info">
+              <h3>Rick and Morty</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque eu odio viverra velit mollis tempor eget sed felis.
+              </p>
+            </span>
+          </div>
+
+          <div class="movie--container">
+            <figure class="movie__image--container">
+              <img src="movie.jpg" alt="movie" />
+            </figure>
+            <span class="movie--info">
+              <h3>Rick and Morty</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque eu odio viverra velit mollis tempor eget sed felis.
+              </p>
+            </span>
+          </div>
+
+          <div class="movie--container">
+            <figure class="movie__image--container">
+              <img src="movie.jpg" alt="movie" />
+            </figure>
+            <span class="movie--info">
+              <h3>Rick and Morty</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque eu odio viverra velit mollis tempor eget sed felis.
+              </p>
+            </span>
+          </div>
+
+          <div class="movie--container">
+            <figure class="movie__image--container">
+              <img src="movie.jpg" alt="movie" />
+            </figure>
+            <span class="movie--info">
+              <h3>Rick and Morty</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque eu odio viverra velit mollis tempor eget sed felis.
+              </p>
+            </span>
+          </div>
+
+          <div class="movie--container">
+            <figure class="movie__image--container">
+              <img src="movie.jpg" alt="movie" />
+            </figure>
+            <span class="movie--info">
+              <h3>Rick and Morty</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque eu odio viverra velit mollis tempor eget sed felis.
+              </p>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Don't miss section  ends -->
+    </div>
+
+    <!-- Footer start -->
+
+    <footer>
+      <a href="#">Terminos y condiciones</a>
+      <div class="contact">
+        <span>Hecho con ❤️ por Samuelab2</span>
+        <a href="https://www.twitter.com/samuelab_26"
+          >¿Trabajamos juntos? <img src="twitter.png" alt="twitter" />
+        </a>
+      </div>
+    </footer>
+
+    <!-- Footer ends -->
+  </body>
+</html>
