@@ -108,7 +108,7 @@ ul:hover {
 .grid-container {
   display: grid;
   grid-template-columns: 100px calc(100vw - 125px);
-  grid-template-rows: 250px 250px 250px;
+  grid-template-rows: repeat(3, minmax(min-content, 265px));
   gap: 10px;
   grid-template-areas:
     'menu inMovie'
@@ -205,7 +205,7 @@ ul:hover {
 .inMovies-grid {
   justify-items: center;
   display: grid;
-  grid-template-columns: repeat(4, 350px);
+  grid-template-columns: repeat(5, 350px);
   overflow-x: auto;
 }
 
@@ -215,19 +215,18 @@ ul:hover {
 
 .liked-grid {
   display: grid;
-  grid-template-columns: repeat(4, 350px);
+  grid-template-columns: repeat(5, 350px);
   justify-items: center;
   overflow-x: auto;
 }
 
 .dontmiss {
   grid-area: dontmiss;
-  margin-bottom: 20px;
 }
 
 .dontmiss-grid {
   display: grid;
-  grid-template-columns: repeat(4, 350px);
+  grid-template-columns: repeat(5, 350px);
   justify-items: center;
   overflow-x: auto;
 }
