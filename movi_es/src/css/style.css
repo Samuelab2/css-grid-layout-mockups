@@ -118,7 +118,7 @@ ul:hover {
 }
 
 .grid-container h2 {
-  margin: 0px;
+  margin: 10px;
 }
 
 .menu {
@@ -257,8 +257,83 @@ footer a {
   width: 20px;
 }
 
-/* @media only screen and (max-width: 579px) {
-  footer {
-    background-color: red;
+@media only screen and (max-width: 579px) {
+  .header {
+    height: 45px;
   }
-} */
+
+  .header__figure {
+    width: 100px;
+  }
+
+  .header__figure img {
+    width: 20px;
+    margin-right: 5px;
+  }
+
+  .header__figure h1 {
+    font-size: 18px;
+  }
+
+  .header__input {
+    padding: 5px;
+  }
+
+  .header__userinfo {
+    width: 90px;
+    margin-right: 5px;
+  }
+
+  .header__userinfo a {
+    letter-spacing: 0px;
+    font-size: 14px;
+    text-align: center;
+  }
+  .header__userinfo ul {
+    top: 45px;
+  }
+
+  .avatar {
+    width: 20px;
+    margin-right: 5px;
+  }
+
+  .arrow {
+    width: 10px;
+  }
+
+  .grid-container {
+    grid-template-columns: 70px calc(100vw - 80px);
+    margin-top: 45px;
+  }
+  .menu img {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+  }
+
+  .menu a {
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .navigation {
+    top: 50px;
+  }
+
+  .grid-container h2 {
+    font-size: 16px;
+  }
+  footer {
+    padding: 0 10px;
+    height: 50px;
+  }
+
+  footer a,
+  span {
+    font-size: 12px;
+  }
+  .contact img {
+    width: 10px;
+  }
+}
