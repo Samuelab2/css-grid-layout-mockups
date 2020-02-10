@@ -107,21 +107,18 @@ ul:hover {
 
 .grid-container {
   display: grid;
-  grid-template-columns: 100px 1fr;
-  /* grid-template-rows: repeat(auto, minmax(200px, 1fr)); */
+  grid-template-columns: 100px calc(100vw - 125px);
+  grid-template-rows: 250px 250px 250px;
   gap: 10px;
   grid-template-areas:
     'menu inMovie'
     'menu liked'
     'menu dontmiss';
   margin-top: 70px;
-  width: 100%;
-  height: calc(100vh - 140px);
-  overflow: auto;
 }
 
 .grid-container h2 {
-  margin: 10px;
+  margin: 0px;
 }
 
 .menu {
@@ -208,9 +205,8 @@ ul:hover {
 .inMovies-grid {
   justify-items: center;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 350px);
-  row-gap: 20px;
-  justify-content: space-evenly;
+  grid-template-columns: repeat(4, 350px);
+  overflow-x: auto;
 }
 
 .liked {
@@ -219,10 +215,9 @@ ul:hover {
 
 .liked-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 350px);
-  row-gap: 20px;
+  grid-template-columns: repeat(4, 350px);
   justify-items: center;
-  justify-content: space-evenly;
+  overflow-x: auto;
 }
 
 .dontmiss {
@@ -232,10 +227,9 @@ ul:hover {
 
 .dontmiss-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 350px);
-  row-gap: 20px;
+  grid-template-columns: repeat(4, 350px);
   justify-items: center;
-  justify-content: space-evenly;
+  overflow-x: auto;
 }
 
 footer {
@@ -262,3 +256,5 @@ footer a {
 .contact img {
   width: 20px;
 }
+
+@media;
